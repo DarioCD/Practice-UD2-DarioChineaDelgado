@@ -1,10 +1,12 @@
 package Clases;
 
 public class Productor extends Thread{
+    String nombre = "";
     int quantity = 0;
     Huerto huerto;
 
-    public Productor(int quantity, Huerto huerto) {
+    public Productor(String nombre, int quantity, Huerto huerto) {
+        this.nombre = nombre;
         this.quantity = quantity;
         this.huerto = huerto;
     }
@@ -33,7 +35,7 @@ public class Productor extends Thread{
                 int tiempoCrecimiento = (int) (Math.random() * 5000) + 1;
                 Thread.sleep(tiempoCrecimiento);
                 String vegetalRadnom = vegetales[numeroRandom];
-                System.out.println("Productor ---> " +  vegetalRadnom);
+                System.out.println("El productor " + nombre + " produce ---> " +  vegetalRadnom);
                 huerto.saveVegetables(vegetalRadnom);
             } catch (InterruptedException e) {
                 System.out.println("CASCASO");

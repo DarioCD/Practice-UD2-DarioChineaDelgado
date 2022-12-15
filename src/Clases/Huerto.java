@@ -8,12 +8,12 @@ public class Huerto {
         vegetalesRandom.add(vegetalRadnom);
         notifyAll();
     }
-    public synchronized void consumeVegetables (){
+    public synchronized void consumeVegetables (String nombre){
         try {
-            while (vegetalesRandom.size() <= 0){
+            while (vegetalesRandom.size() == 0){
                 wait();
-                System.out.println("Consumidor ---> " + vegetalesRandom.remove(0));
             }
+            System.out.println("El consumidor " + nombre + " ---> " + vegetalesRandom.remove(0));
         } catch (Exception e){
             System.out.println("CASCASO");
         }
