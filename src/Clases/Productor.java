@@ -1,6 +1,13 @@
 package Clases;
 
 public class Productor extends Thread{
+    int quantity = 0;
+    Huerto huerto;
+
+    public Productor(int quantity, Huerto huerto) {
+        this.quantity = quantity;
+        this.huerto = huerto;
+    }
     String vegetales[] = {
             "lettuce",
             "cabbage",
@@ -18,12 +25,19 @@ public class Productor extends Thread{
             "carrot",
             "green bean"
     };
-    public synchronized void select (int quantity) throws InterruptedException {
+    @Override
+    public void run (){
         for (int i = 0; i < quantity; i++) {
-            int index = (int) (Math.random() * vegetales.length);
-            int numero = (int) (Math.random() * 1000) + 1;
-            Thread.sleep(numero);
-            System.out.println(vegetales[index] + "tardo: " + numero + " milisegundos");
+            try{
+                int numeroRandom = (int) (Math.random() * vegetales.length);
+                int tiempoCrecimiento = (int) (Math.random() * 5000) + 1;
+                Thread.sleep(tiempoCrecimiento);
+                String vegetalRadnom = vegetales[numeroRandom];
+                System.out.println("Productor ---> " +  vegetalRadnom);
+                huerto.saveVegetables(vegetalRadnom);
+            } catch (InterruptedException e) {
+                System.out.println("CASCASO");
+            }
         }
     }
 };
