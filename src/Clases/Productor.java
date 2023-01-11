@@ -32,7 +32,7 @@ public class Productor extends Thread{
         for (int i = 0; i < quantity; i++) {
             try{
                 int numeroRandom = (int) (Math.random() * vegetales.length);
-                int tiempoCrecimiento = (int) (Math.random() * 5000) + 1;
+                int tiempoCrecimiento = (int) (Math.random() * 1000) + 1;
                 Thread.sleep(tiempoCrecimiento);
                 String vegetalRadnom = vegetales[numeroRandom];
                 System.out.println("El productor " + nombre + " produce ---> " +  vegetalRadnom);
