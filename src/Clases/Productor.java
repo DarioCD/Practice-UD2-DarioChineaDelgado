@@ -9,6 +9,7 @@ public class Productor extends Thread{
         this.nombre = nombre;
         this.quantity = quantity;
         this.huerto = huerto;
+        this.setPriority(MAX_PRIORITY);
     }
     String vegetales[] = {
             "lettuce",
